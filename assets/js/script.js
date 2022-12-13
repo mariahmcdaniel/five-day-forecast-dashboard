@@ -14,6 +14,16 @@ searchBtn.addEventListener('click', function () {
   var city = document.querySelector('input').value
   var coRequestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=9379b40dea2a6d930a04b31663b3083f';
 
+  var prevSearches = JSON.parse(localStorage.getItem('cities'));
+  var saveSearch = function (userInput) {
+    if (prevSearches !== null) {
+      prevSearches.push(userInput);
+      localStorage.setItem('cities', JSON.stringify(prevSearches));
+    } else {
+      prevSearches = [userInput];
+      localStorage.setItem('cities', JSON.stringify(prevSearches));
+    }
+  }
 
 
   fetch(coRequestUrl)
@@ -37,26 +47,6 @@ searchBtn.addEventListener('click', function () {
             document.getElementById(`humid${i}`).textContent = 'Humidity: ' + data.list[i].main.humidity;
             document.getElementById(`wind${i}`).textContent = 'Wind Speed: ' + data.list[i].wind.speed;
           };
-          // tempEls[0].textContent = 'Temp: ' + Math.floor(data.list[4].main.temp);
-          // dateEls[0].textContent = data.list[4].dt_txt;
-          // windEls[0].textContent = 'Wind Speed: ' + data.list[4].wind.speed;
-          // humidityEls[0].textContent = 'Humidity: ' + data.list[4].main.humidity;
-          // tempEls[1].textContent = 'Temp: ' + Math.floor(data.list[12].main.temp);
-          // dateEls[1].textContent = data.list[12].dt_txt;
-          // windEls[1].textContent = 'Wind Speed: ' + data.list[12].wind.speed;
-          // humidityEls[1].textContent = 'Humidity: ' + data.list[12].main.humidity;
-          // tempEls[2].textContent = 'Temp: ' + Math.floor(data.list[20].main.temp);
-          // dateEls[2].textContent = data.list[20].dt_txt;
-          // windEls[2].textContent = 'Wind Speed: ' + data.list[20].wind.speed;
-          // humidityEls[2].textContent = 'Humidity: ' + data.list[20].main.humidity;
-          // tempEls[3].textContent = 'Temp: ' + Math.floor(data.list[28].main.temp);
-          // dateEls[3].textContent = data.list[28].dt_txt;
-          // windEls[3].textContent = 'Wind Speed: ' + data.list[28].wind.speed;
-          // humidityEls[3].textContent = 'Humidity: ' + data.list[28].main.humidity;
-          // tempEls[4].textContent = 'Temp: ' + Math.floor(data.list[36].main.temp);
-          // dateEls[4].textContent = data.list[36].dt_txt;
-          // windEls[4].textContent = 'Wind Speed: ' + data.list[36].wind.speed;
-          // humidityEls[4].textContent = 'Humidity: ' + data.list[36].main.humidity;
         })
         .catch(function (error) {
           console.log(error);
