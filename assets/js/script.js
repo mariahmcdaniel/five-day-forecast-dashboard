@@ -1,6 +1,6 @@
 var apiKey = '9379b40dea2a6d930a04b31663b3083f'; //Weather API Key
 var cityName = 'london';
-var coordRequestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=5&appid=9379b40dea2a6d930a04b31663b3083f';
+var coordRequestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=5&appid=9379b40dea2a6d930a04b31663b3083f';
 var dateEls = document.querySelectorAll('.dateEl');
 var tempEls = document.querySelectorAll('.tempEl');
 var humidityEls = document.querySelectorAll('.humidEl');
@@ -26,7 +26,7 @@ var btnsDiv = document.getElementById('btnsDiv');
 btnsDiv.addEventListener('click', function (event) {
   var clicked = event.target;
   var city = clicked.textContent;
-  var coRequestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=9379b40dea2a6d930a04b31663b3083f';
+  var coRequestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=9379b40dea2a6d930a04b31663b3083f';
   fetchWeather(coRequestUrl);
 });
 
@@ -39,7 +39,7 @@ var fetchWeather = function (coRequestUrl) {
     .then(function (data) {
       var lat = data[0].lat;
       var lon = data[0].lon;
-      var requestUrl = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&units=imperial&appid=9379b40dea2a6d930a04b31663b3083f';
+      var requestUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&units=imperial&appid=9379b40dea2a6d930a04b31663b3083f';
       fetch(requestUrl)
         .then(function (response) {
           return response.json();
@@ -56,14 +56,14 @@ var fetchWeather = function (coRequestUrl) {
           document.getElementById(`humid0`).textContent = 'Humidity: ' + data.list[0].main.humidity;
           document.getElementById(`wind0`).textContent = 'Wind Speed: ' + data.list[0].wind.speed;
           var icon1 = data.list[0].weather[0].icon;
-          document.getElementById(`icon0`).src = 'http://openweathermap.org/img/wn/' + icon1 + '@2x.png';
+          document.getElementById(`icon0`).src = 'https://openweathermap.org/img/wn/' + icon1 + '@2x.png';
           for (var i = 7; i < 40; i += 8) {
             document.getElementById(`temp${i}`).textContent = 'Temp: ' + Math.floor(data.list[i].main.temp);
             document.getElementById(`date${i}`).textContent = data.list[i].dt_txt.slice(0, -9);
             document.getElementById(`humid${i}`).textContent = 'Humidity: ' + data.list[i].main.humidity;
             document.getElementById(`wind${i}`).textContent = 'Wind Speed: ' + data.list[i].wind.speed;
             var icon = data.list[i].weather[0].icon;
-            document.getElementById(`icon${i}`).src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+            document.getElementById(`icon${i}`).src = 'https://openweathermap.org/img/wn/' + icon + '@2x.png';
           };
         })
         .catch(function (error) {
@@ -77,7 +77,7 @@ var fetchWeather = function (coRequestUrl) {
 
 searchBtn.addEventListener('click', function () {
   var city = document.querySelector('input').value
-  var coRequestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=9379b40dea2a6d930a04b31663b3083f';
+  var coRequestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=9379b40dea2a6d930a04b31663b3083f';
 
   var saveSearch = function (userInput) {
     if (prevSearches !== null) {
