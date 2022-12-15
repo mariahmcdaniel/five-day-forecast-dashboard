@@ -12,11 +12,11 @@ For this project, my goal was to create a weather dashboard in which a user can 
 
 ## Usage
 
-You can use this [five-day forecast dashboard](https://mariahmcdaniel.github.io/five-day-forecast-dashboard/) to get the current weather, along with the forecast for the next 5 days.
+You can use this [five-day forecast dashboard](https://mariahmcdaniel.github.io/five-day-forecast-dashboard/) to get the current weather in any city, along with the forecast for the next 5 days.
 
 ## Visuals
 
-![overview](./assets/images/weatherdisplay.png)
+![overview](./assets/images/weather.png)
 
-![search](./assets/images/search.png)
+![search](./assets/images/search-input.png)
 

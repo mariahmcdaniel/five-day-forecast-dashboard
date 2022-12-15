@@ -15,9 +15,9 @@ h4 {
 }
 
 header {
-    background-image: linear-gradient(rgb(121, 152, 210), rgba(254, 221, 248, 0.344));
+    background-image: linear-gradient(to right, rgb(143, 121, 210), rgba(247, 167, 233, 0.344));
 }
 
 #searchContainer {
-    background-image: linear-gradient(rgb(121, 152, 210), rgba(254, 221, 248, 0.344));
+    background-image: linear-gradient(to bottom right, rgb(143, 121, 210), rgba(247, 167, 233, 0.344));
 }
