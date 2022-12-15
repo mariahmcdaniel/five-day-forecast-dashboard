@@ -13,3 +13,11 @@ h4 {
 .hide {
     display: none;
 }
+
+header {
+    background-image: linear-gradient(rgb(121, 152, 210), rgba(254, 221, 248, 0.344));
+}
+
+#searchContainer {
+    background-image: linear-gradient(rgb(121, 152, 210), rgba(254, 221, 248, 0.344));
+}
