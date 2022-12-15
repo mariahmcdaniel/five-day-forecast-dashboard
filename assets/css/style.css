@@ -9,3 +9,7 @@ h4 {
 .nextDay {
     background-color: rgb(153, 210, 251);
 }
+
+.hide {
+    display: none;
+}

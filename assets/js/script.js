@@ -15,7 +15,7 @@ var displayHistory = function () {
       var histBtn = document.createElement('button');
       histBtn.textContent = search;
       histBtn.setAttribute('class', 'searchHistory');
-      document.getElementById('btnsDiv').appendChild(histBtn);
+      document.getElementById('btnsContainer').appendChild(histBtn);
     }
   }
 }
@@ -46,8 +46,18 @@ var fetchWeather = function (coRequestUrl) {
         })
         .then(function (data) {
           console.log(data);
-          cityEl.textContent = 'Upcoming Weather in ' + data.city.name;
-          for (var i = 4; i < 37; i += 8) {
+          cityEl.textContent = 'Upcoming Weather in ' + data.city.name; + ':'
+          var cards = document.querySelectorAll('.weatherCard');
+          for (var card of cards) {
+            card.classList.remove('hide');
+          };
+          document.getElementById(`temp0`).textContent = 'Temp: ' + Math.floor(data.list[0].main.temp);
+          document.getElementById(`date0`).textContent = data.city.name + ' today (' + data.list[0].dt_txt.slice(0, -9) + '):';
+          document.getElementById(`humid0`).textContent = 'Humidity: ' + data.list[0].main.humidity;
+          document.getElementById(`wind0`).textContent = 'Wind Speed: ' + data.list[0].wind.speed;
+          var icon1 = data.list[0].weather[0].icon;
+          document.getElementById(`icon0`).src = 'http://openweathermap.org/img/wn/' + icon1 + '@2x.png';
+          for (var i = 7; i < 40; i += 8) {
             document.getElementById(`temp${i}`).textContent = 'Temp: ' + Math.floor(data.list[i].main.temp);
             document.getElementById(`date${i}`).textContent = data.list[i].dt_txt.slice(0, -9);
             document.getElementById(`humid${i}`).textContent = 'Humidity: ' + data.list[i].main.humidity;
@@ -73,7 +83,6 @@ searchBtn.addEventListener('click', function () {
     if (prevSearches !== null) {
       prevSearches.push(userInput);
       localStorage.setItem('cities', JSON.stringify(prevSearches));
-      displayHistory();
     } else {
       prevSearches = [userInput];
       localStorage.setItem('cities', JSON.stringify(prevSearches));
