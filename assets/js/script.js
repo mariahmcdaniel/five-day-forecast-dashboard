@@ -25,26 +25,12 @@ displayHistory();
 var btnsDiv = document.getElementById('btnsDiv');
 btnsDiv.addEventListener('click', function (event) {
   var clicked = event.target;
-
-})
-
-searchBtn.addEventListener('click', function () {
-  var city = document.querySelector('input').value
+  var city = clicked.textContent;
   var coRequestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=9379b40dea2a6d930a04b31663b3083f';
+  fetchWeather(coRequestUrl);
+});
 
-  var saveSearch = function (userInput) {
-    if (prevSearches !== null) {
-      prevSearches.push(userInput);
-      localStorage.setItem('cities', JSON.stringify(prevSearches));
-      displayHistory();
-    } else {
-      prevSearches = [userInput];
-      localStorage.setItem('cities', JSON.stringify(prevSearches));
-      displayHistory();
-    }
-  }
-  saveSearch(city);
-
+var fetchWeather = function (coRequestUrl) {
 
   fetch(coRequestUrl)
     .then(function (response) {
@@ -62,10 +48,12 @@ searchBtn.addEventListener('click', function () {
           console.log(data);
           cityEl.textContent = 'Upcoming Weather in ' + data.city.name;
           for (var i = 4; i < 37; i += 8) {
-            document.getElementById(`temp${i}`).textContent = 'Temp: ' + data.list[i].main.temp;;
-            document.getElementById(`date${i}`).textContent = data.list[i].dt_txt;
+            document.getElementById(`temp${i}`).textContent = 'Temp: ' + Math.floor(data.list[i].main.temp);
+            document.getElementById(`date${i}`).textContent = data.list[i].dt_txt.slice(0, -9);
             document.getElementById(`humid${i}`).textContent = 'Humidity: ' + data.list[i].main.humidity;
             document.getElementById(`wind${i}`).textContent = 'Wind Speed: ' + data.list[i].wind.speed;
+            var icon = data.list[i].weather[0].icon;
+            document.getElementById(`icon${i}`).src = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
           };
         })
         .catch(function (error) {
@@ -75,5 +63,23 @@ searchBtn.addEventListener('click', function () {
     .catch(function (error) {
       console.log(error);
     });
+};
 
+searchBtn.addEventListener('click', function () {
+  var city = document.querySelector('input').value
+  var coRequestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=9379b40dea2a6d930a04b31663b3083f';
+
+  var saveSearch = function (userInput) {
+    if (prevSearches !== null) {
+      prevSearches.push(userInput);
+      localStorage.setItem('cities', JSON.stringify(prevSearches));
+      displayHistory();
+    } else {
+      prevSearches = [userInput];
+      localStorage.setItem('cities', JSON.stringify(prevSearches));
+      displayHistory();
+    }
+  }
+  saveSearch(city);
+  fetchWeather(coRequestUrl);
 });

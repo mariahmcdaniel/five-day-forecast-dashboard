@@ -1,0 +1,11 @@
+h4 {
+    font-size: 20px;
+}
+
+.today {
+    background-color: rgb(160, 196, 125);
+}
+
+.nextDay {
+    background-color: rgb(153, 210, 251);
+}
