@@ -3,7 +3,7 @@ h4 {
 }
 
 .today {
-    background-color: rgb(160, 196, 125);
+    background-image: linear-gradient(to right, rgb(134, 201, 126), rgba(137, 252, 88, 0.395));
 }
 
 .nextDay {
@@ -15,9 +15,9 @@ h4 {
 }
 
 header {
-    background-image: linear-gradient(to right, rgb(143, 121, 210), rgba(247, 167, 233, 0.344));
+    background-image: linear-gradient(to right, rgb(143, 121, 210), rgba(247, 167, 232, 0.395));
 }
 
 #searchContainer {
-    background-image: linear-gradient(to bottom right, rgb(143, 121, 210), rgba(247, 167, 233, 0.344));
+    background-image: linear-gradient(to bottom right, rgb(143, 121, 210), rgba(247, 167, 232, 0.395));
 }
